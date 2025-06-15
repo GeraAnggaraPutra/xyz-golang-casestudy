@@ -65,4 +65,4 @@
 
 ## API Documentation
 
-[Download Postman API JSON File!](https://api.postman.com/collections/27362852-dea758c9-6587-42e4-a764-27ad6db3e306?access_key=PMAT-01JXTGJNC3ZCREKX04WZMJ4MJW)
+[Download Postman API JSON File!](Kredit%20Plus.postman_collection.json)

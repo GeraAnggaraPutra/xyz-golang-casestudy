@@ -1,0 +1,1794 @@
+{
+	"info": {
+		"_postman_id": "dea758c9-6587-42e4-a764-27ad6db3e306",
+		"name": "Kredit Plus",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27362852"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"{\r",
+									"    var json = pm.response.json();\r",
+									"    pm.variables\r",
+									"    pm.collectionVariables.set(\"token\", json.data.access_token);\r",
+									"    pm.collectionVariables.set(\"refresh-token\", json.data.refresh_token)\r",
+									"\r",
+									"    pm.environment.set(\"token\", json.data.access_token);\r",
+									"    pm.environment.set(\"refresh-token\", json.data.refresh_token)\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"password\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Jun 2025 12:20:07 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "754"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTA3MTAwMDcsImp0aSI6IjAxOTc3Mzg4LTYwZjAtN2FlMS05ODUwLWEwYTE1ZTBlMmIzYyIsInVyaSI6ImI1ZTZiNzYxLTYyNTEtNGVmOC1iMzNkLWQ1ZTliNjYzZjhkNiJ9.Joc5Jc98MbJBPKlShY4YRBvIT_kMGITtCNzz0zBnSTE\",\n        \"access_token_expired_at\": \"2025-06-23T20:20:07.0247132Z\",\n        \"refresh_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTAwNzY0MDcsImp0aSI6IjAxOTc3Mzg4LTYwZjAtN2FlMS05ODUwLWEwYTE1ZTBlMmIzYyJ9.GV1-YYcH-kKLbIKLO19jqjgaiTJFP_d6UG2_4cACGmw\",\n        \"refresh_token_expired_at\": \"2025-06-16T12:20:07.0247132Z\",\n        \"user\": {\n            \"guid\": \"b5e6b761-6251-4ef8-b33d-d5e9b663f8d6\",\n            \"email\": \"admin@gmail.com\",\n            \"created_at\": \"2025-06-15T19:18:00Z\",\n            \"created_by\": \"system\",\n            \"updated_at\": null,\n            \"updated_by\": null\n        }\n    },\n    \"message\": \"Success login\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refresh_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTA3MTE3MDUsImp0aSI6IjAxOTc3M2EyLTRhNGEtNzIxYy1hZDE1LTgyNDg5YTg5NmJjMCIsInVyaSI6ImI1ZTZiNzYxLTYyNTEtNGVmOC1iMzNkLWQ1ZTliNjYzZjhkNiJ9.sbNAJ2-RDBhqanlxVVok9R8AJEpfbhS9zQP-JGSuua0\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/refresh-token",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"refresh-token"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"refresh_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDkwNDcwMDUsImp0aSI6IjAxOTczNjJjLWY0OTMtNzNhMC1iMDg5LWRmOGE5MDAwOWNhMyJ9.aFAy0Asoo1lipR9f6MGI_xNTZfY499D7V5BcQEQSySM\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/auth/refresh-token",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"refresh-token"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 03 Jun 2025 14:25:36 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "788"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDk2ODA3MzYsImp0aSI6IjAxOTczNjJjLWY0OTMtNzNhMC1iMDg5LWRmOGE5MDAwOWNhMyIsInVyaSI6ImVhYjkxNmZjLTY2YjktNDE1Zi04NzMxLWYxNzUzOTYyN2UwYyJ9.JjUpdACTeBeQzMtSzhUAlo2pKDJm8Z8qOUAXb0eN7kQ\",\n        \"access_token_expires_at\": \"2025-06-12T05:25:36.551577+07:00\",\n        \"refresh_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDkwNDcxMzYsImp0aSI6IjAxOTczNjJjLWY0OTMtNzNhMC1iMDg5LWRmOGE5MDAwOWNhMyJ9.RF7Mjq76GlULLUdVXMPfYUP1cGIi2NrGCjtgKPlnCxs\",\n        \"refresh_token_expires_at\": \"2025-06-04T21:25:36.551577+07:00\",\n        \"user\": {\n            \"guid\": \"eab916fc-66b9-415f-8731-f17539627e0c\",\n            \"username\": \"Admin\",\n            \"email\": \"admin@gmail.com\",\n            \"created_at\": \"2025-06-03T18:34:01Z\",\n            \"created_by\": \"system\",\n            \"updated_at\": null,\n            \"updated_by\": null\n        }\n    },\n    \"message\": \"Success refresh token\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/auth/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/auth/logout",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 03 Jun 2025 14:26:43 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "40"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": null,\n    \"message\": \"Success logout\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User Management",
+			"item": [
+				{
+					"name": "Read List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/user?sort=email&direction=DESC&page=1&limit=10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "admin",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "email",
+									"description": "email, created_at, updated_at"
+								},
+								{
+									"key": "direction",
+									"value": "DESC",
+									"description": "ASC, DESC"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Read List",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/user?sort=email&direction=DESC&page=1&limit=10",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"user"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "admin",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "email",
+											"description": "email, created_at, updated_at"
+										},
+										{
+											"key": "direction",
+											"value": "DESC",
+											"description": "ASC, DESC"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Jun 2025 15:00:48 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "683"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"guid\": \"0197741b-00e2-7f0a-83c6-8198862bc746\",\n            \"email\": \"user3@gmail.com\",\n            \"created_at\": \"2025-06-15T15:00:16Z\",\n            \"created_by\": \"b5e6b761-6251-4ef8-b33d-d5e9b663f8d6\",\n            \"updated_at\": null,\n            \"updated_by\": null\n        },\n        {\n            \"guid\": \"0197741a-f065-7470-a5c4-a1e4ef5aad9e\",\n            \"email\": \"user2@gmail.com\",\n            \"created_at\": \"2025-06-15T15:00:12Z\",\n            \"created_by\": \"b5e6b761-6251-4ef8-b33d-d5e9b663f8d6\",\n            \"updated_at\": null,\n            \"updated_by\": null\n        },\n        {\n            \"guid\": \"f1916228-c42b-4ee5-975b-5a9b405f11c6\",\n            \"email\": \"admin@gmail.com\",\n            \"created_at\": \"2025-06-15T21:12:53Z\",\n            \"created_by\": \"system\",\n            \"updated_at\": null,\n            \"updated_by\": null\n        }\n    ],\n    \"message\": \"Success get user list\",\n    \"paginate\": {\n        \"current_page\": 1,\n        \"per_page\": 10,\n        \"total_page\": 1,\n        \"total_data\": 3\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Read Detail",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/user/:guid",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								":guid"
+							],
+							"variable": [
+								{
+									"key": "guid",
+									"value": "3fb7d7cc-de6f-477a-8a80-45674d6d29cf"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/user/:guid",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"user",
+										":guid"
+									],
+									"variable": [
+										{
+											"key": "guid",
+											"value": "0197741a-f065-7470-a5c4-a1e4ef5aad9e"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Jun 2025 15:03:53 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "293"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"guid\": \"0197741a-f065-7470-a5c4-a1e4ef5aad9e\",\n        \"email\": \"new@gmail.com\",\n        \"created_at\": \"2025-06-15T15:00:12Z\",\n        \"created_by\": \"b5e6b761-6251-4ef8-b33d-d5e9b663f8d6\",\n        \"updated_at\": \"2025-06-15T15:03:38Z\",\n        \"updated_by\": \"b5e6b761-6251-4ef8-b33d-d5e9b663f8d6\"\n    },\n    \"message\": \"Success get user detail\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"user3@gmail.com\",\r\n    \"password\": \"pass123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/user",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Email Already Exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"pass123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/user",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Jun 2025 14:56:37 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "102"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"email\": \"Email already exists\"\n    },\n    \"message\": \"Email already exists, please use another email\"\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"user2@gmail.com\",\r\n    \"password\": \"pass123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/user",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Jun 2025 14:57:04 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "46"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": null,\n    \"message\": \"Success create user\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"new@gmail.com\",\r\n    \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/user/:guid",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								":guid"
+							],
+							"variable": [
+								{
+									"key": "guid",
+									"value": "0197741a-f065-7470-a5c4-a1e4ef5aad9e"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Email Already Exists",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"user3@gmail.com\",\r\n    \"password\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/user/:guid",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"user",
+										":guid"
+									],
+									"variable": [
+										{
+											"key": "guid",
+											"value": "0197741a-f065-7470-a5c4-a1e4ef5aad9e"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Jun 2025 15:03:17 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "102"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"email\": \"Email already exists\"\n    },\n    \"message\": \"Email already exists, please use another email\"\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"new@gmail.com\",\r\n    \"password\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/user/:guid",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"user",
+										":guid"
+									],
+									"variable": [
+										{
+											"key": "guid",
+											"value": "0197741a-f065-7470-a5c4-a1e4ef5aad9e"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Jun 2025 15:03:38 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "46"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": null,\n    \"message\": \"Success update user\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/user/:guid",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								":guid"
+							],
+							"variable": [
+								{
+									"key": "guid",
+									"value": "0197741a-f065-7470-a5c4-a1e4ef5aad9e"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/user/:guid",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"user",
+										":guid"
+									],
+									"variable": [
+										{
+											"key": "guid",
+											"value": "0197741a-f065-7470-a5c4-a1e4ef5aad9e"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Jun 2025 15:04:03 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "46"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": null,\n    \"message\": \"Success delete user\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Customer Management",
+			"item": [
+				{
+					"name": "Read List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/customer?sort=nik&direction=DESC&page=1&limit=10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"customer"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "budi",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "nik",
+									"description": "nik, full_name, legal_name, birth_place, birth_date, salary, created_at, updated_at"
+								},
+								{
+									"key": "direction",
+									"value": "DESC",
+									"description": "ASC, DESC"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/customer?sort=nik&direction=DESC&page=1&limit=10",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"customer"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "budi",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "nik",
+											"description": "nik, full_name, legal_name, birth_place, birth_date, salary, created_at, updated_at"
+										},
+										{
+											"key": "direction",
+											"value": "DESC",
+											"description": "ASC, DESC"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Jun 2025 16:01:11 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1112"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"guid\": \"615b7708-a298-4f40-8548-f1f77b99ce05\",\n            \"nik\": \"3273020202920002\",\n            \"full_name\": \"Annisa Putri\",\n            \"legal_name\": \"Annisa Putri\",\n            \"birth_place\": \"Bandung\",\n            \"birth_date\": \"1992-05-20T00:00:00Z\",\n            \"salary\": 12000000,\n            \"photo_ktp\": \"http://127.0.0.1:8000/storage/file/image/2025-03-27/1743055334_ktp_annisa.jpg\",\n            \"photo_selfie\": \"http://127.0.0.1:8000/storage/file/image/2025-03-27/1743055334_selfie_annisa.jpg\",\n            \"created_at\": \"2025-06-15T21:12:53.945506Z\",\n            \"created_by\": \"system\",\n            \"updated_at\": null,\n            \"updated_by\": null\n        },\n        {\n            \"guid\": \"3fb7d7cc-de6f-477a-8a80-45674d6d29cf\",\n            \"nik\": \"3273010101900001\",\n            \"full_name\": \"Budi Santoso\",\n            \"legal_name\": \"Budi Santoso\",\n            \"birth_place\": \"Jakarta\",\n            \"birth_date\": \"1990-01-15T00:00:00Z\",\n            \"salary\": 7500000,\n            \"photo_ktp\": \"http://127.0.0.1:8000/storage/file/image/2025-03-27/1743055334_ktp_budi.jpg\",\n            \"photo_selfie\": \"http://127.0.0.1:8000/storage/file/image/2025-03-27/1743055334_selfie_budi.jpg\",\n            \"created_at\": \"2025-06-15T21:12:53.945506Z\",\n            \"created_by\": \"system\",\n            \"updated_at\": null,\n            \"updated_by\": null\n        }\n    ],\n    \"message\": \"Success get customer list\",\n    \"paginate\": {\n        \"current_page\": 1,\n        \"per_page\": 10,\n        \"total_page\": 1,\n        \"total_data\": 2\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Read Detail",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/customer/:guid",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"customer",
+								":guid"
+							],
+							"variable": [
+								{
+									"key": "guid",
+									"value": "3fb7d7cc-de6f-477a-8a80-45674d6d29cf"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/customer/:guid",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"customer",
+										":guid"
+									],
+									"variable": [
+										{
+											"key": "guid",
+											"value": "615b7708-a298-4f40-8548-f1f77b99ce05"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Jun 2025 16:01:36 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "725"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"guid\": \"615b7708-a298-4f40-8548-f1f77b99ce05\",\n        \"nik\": \"3273020202920002\",\n        \"full_name\": \"Annisa Putri\",\n        \"legal_name\": \"Annisa Putri\",\n        \"birth_place\": \"Bandung\",\n        \"birth_date\": \"1992-05-20T00:00:00Z\",\n        \"salary\": 12000000,\n        \"photo_ktp\": \"http://127.0.0.1:8000/storage/file/image/2025-03-27/1743055334_ktp_annisa.jpg\",\n        \"photo_selfie\": \"http://127.0.0.1:8000/storage/file/image/2025-03-27/1743055334_selfie_annisa.jpg\",\n        \"created_at\": \"2025-06-15T21:12:53.945506Z\",\n        \"created_by\": \"system\",\n        \"updated_at\": null,\n        \"updated_by\": null,\n        \"tenors\": [\n            {\n                \"tenor_months\": 1,\n                \"limit_amount\": 1000000\n            },\n            {\n                \"tenor_months\": 2,\n                \"limit_amount\": 1200000\n            },\n            {\n                \"tenor_months\": 3,\n                \"limit_amount\": 1500000\n            },\n            {\n                \"tenor_months\": 4,\n                \"limit_amount\": 2000000\n            }\n        ]\n    },\n    \"message\": \"Success get customer detail\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nik\": \"3273020202920003\",\r\n    \"full_name\": \"Gera\",\r\n    \"legal_name\": \"Gera\",\r\n    \"birth_place\": \"Bandung\",\r\n    \"birth_date\": \"1992-05-20T00:00:00Z\",\r\n    \"salary\": 10000000,\r\n    \"photo_ktp\": \"http://127.0.0.1:8000/storage/file/image/2025-03-27/1743055334_ktp_annisa.jpg\",\r\n    \"photo_selfie\": \"http://127.0.0.1:8000/storage/file/image/2025-03-27/1743055334_selfie_annisa.jpg\",\r\n    \"tenors\": [\r\n        {\r\n            \"tenor_months\": 1,\r\n            \"limit_amount\": 1110000\r\n        },\r\n        {\r\n            \"tenor_months\": 2,\r\n            \"limit_amount\": 1200000\r\n        },\r\n        {\r\n            \"tenor_months\": 3,\r\n            \"limit_amount\": 1500000\r\n        },\r\n        {\r\n            \"tenor_months\": 4,\r\n            \"limit_amount\": 2000000\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/customer",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"customer"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "NIK Already Exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nik\": \"3273020202920002\",\r\n    \"full_name\": \"Gera\",\r\n    \"legal_name\": \"Gera\",\r\n    \"birth_place\": \"Bandung\",\r\n    \"birth_date\": \"1992-05-20T00:00:00Z\",\r\n    \"salary\": 10000000,\r\n    \"photo_ktp\": \"http://127.0.0.1:8000/storage/file/image/2025-03-27/1743055334_ktp_annisa.jpg\",\r\n    \"photo_selfie\": \"http://127.0.0.1:8000/storage/file/image/2025-03-27/1743055334_selfie_annisa.jpg\",\r\n    \"tenors\": [\r\n        {\r\n            \"tenor_months\": 1,\r\n            \"limit_amount\": 1000000\r\n        },\r\n        {\r\n            \"tenor_months\": 2,\r\n            \"limit_amount\": 1200000\r\n        },\r\n        {\r\n            \"tenor_months\": 3,\r\n            \"limit_amount\": 1500000\r\n        },\r\n        {\r\n            \"tenor_months\": 4,\r\n            \"limit_amount\": 2000000\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/customer",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"customer"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Jun 2025 16:03:47 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "70"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"nik\": \"NIK already exists\"\n    },\n    \"message\": \"NIK already exists\"\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nik\": \"3273020202920003\",\r\n    \"full_name\": \"Gera\",\r\n    \"legal_name\": \"Gera\",\r\n    \"birth_place\": \"Bandung\",\r\n    \"birth_date\": \"1992-05-20T00:00:00Z\",\r\n    \"salary\": 10000000,\r\n    \"photo_ktp\": \"http://127.0.0.1:8000/storage/file/image/2025-03-27/1743055334_ktp_annisa.jpg\",\r\n    \"photo_selfie\": \"http://127.0.0.1:8000/storage/file/image/2025-03-27/1743055334_selfie_annisa.jpg\",\r\n    \"tenors\": [\r\n        {\r\n            \"tenor_months\": 1,\r\n            \"limit_amount\": 1110000\r\n        },\r\n        {\r\n            \"tenor_months\": 2,\r\n            \"limit_amount\": 1200000\r\n        },\r\n        {\r\n            \"tenor_months\": 3,\r\n            \"limit_amount\": 1500000\r\n        },\r\n        {\r\n            \"tenor_months\": 4,\r\n            \"limit_amount\": 2000000\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/customer",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"customer"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Jun 2025 16:04:24 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "50"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": null,\n    \"message\": \"Success create customer\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nik\": \"3273020202920002\",\r\n    \"full_name\": \"Gera Anggara\",\r\n    \"legal_name\": \"Gera Anggara\",\r\n    \"birth_place\": \"Bandung\",\r\n    \"birth_date\": \"1992-05-20T00:00:00Z\",\r\n    \"salary\": 10000000,\r\n    \"photo_ktp\": \"http://127.0.0.1:8000/storage/file/image/2025-03-27/1743055334_ktp_annisa.jpg\",\r\n    \"photo_selfie\": \"http://127.0.0.1:8000/storage/file/image/2025-03-27/1743055334_selfie_annisa.jpg\",\r\n    \"tenors\": [\r\n        {\r\n            \"tenor_months\": 1,\r\n            \"limit_amount\": 1110000\r\n        },\r\n        {\r\n            \"tenor_months\": 2,\r\n            \"limit_amount\": 12220000\r\n        },\r\n        {\r\n            \"tenor_months\": 3,\r\n            \"limit_amount\": 1500000\r\n        },\r\n        {\r\n            \"tenor_months\": 4,\r\n            \"limit_amount\": 2000000\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/customer/:guid",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"customer",
+								":guid"
+							],
+							"variable": [
+								{
+									"key": "guid",
+									"value": "01977455-b852-7245-a308-098ee4cb4c97"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "NIK Already Exists",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nik\": \"3273020202920002\",\r\n    \"full_name\": \"Gera Anggara\",\r\n    \"legal_name\": \"Gera Anggara\",\r\n    \"birth_place\": \"Bandung\",\r\n    \"birth_date\": \"1992-05-20T00:00:00Z\",\r\n    \"salary\": 10000000,\r\n    \"photo_ktp\": \"http://127.0.0.1:8000/storage/file/image/2025-03-27/1743055334_ktp_annisa.jpg\",\r\n    \"photo_selfie\": \"http://127.0.0.1:8000/storage/file/image/2025-03-27/1743055334_selfie_annisa.jpg\",\r\n    \"tenors\": [\r\n        {\r\n            \"tenor_months\": 1,\r\n            \"limit_amount\": 1110000\r\n        },\r\n        {\r\n            \"tenor_months\": 2,\r\n            \"limit_amount\": 12220000\r\n        },\r\n        {\r\n            \"tenor_months\": 3,\r\n            \"limit_amount\": 1500000\r\n        },\r\n        {\r\n            \"tenor_months\": 4,\r\n            \"limit_amount\": 2000000\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/customer/:guid",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"customer",
+										":guid"
+									],
+									"variable": [
+										{
+											"key": "guid",
+											"value": "01977455-b852-7245-a308-098ee4cb4c97"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Jun 2025 16:05:37 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "70"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": {\n        \"nik\": \"NIK already exists\"\n    },\n    \"message\": \"NIK already exists\"\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nik\": \"3273020202920003\",\r\n    \"full_name\": \"Gera Anggara\",\r\n    \"legal_name\": \"Gera Anggara\",\r\n    \"birth_place\": \"Bandung\",\r\n    \"birth_date\": \"1992-05-20T00:00:00Z\",\r\n    \"salary\": 10000000,\r\n    \"photo_ktp\": \"http://127.0.0.1:8000/storage/file/image/2025-03-27/1743055334_ktp_annisa.jpg\",\r\n    \"photo_selfie\": \"http://127.0.0.1:8000/storage/file/image/2025-03-27/1743055334_selfie_annisa.jpg\",\r\n    \"tenors\": [\r\n        {\r\n            \"tenor_months\": 1,\r\n            \"limit_amount\": 1110000\r\n        },\r\n        {\r\n            \"tenor_months\": 2,\r\n            \"limit_amount\": 12220000\r\n        },\r\n        {\r\n            \"tenor_months\": 3,\r\n            \"limit_amount\": 1500000\r\n        },\r\n        {\r\n            \"tenor_months\": 4,\r\n            \"limit_amount\": 2000000\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/customer/:guid",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"customer",
+										":guid"
+									],
+									"variable": [
+										{
+											"key": "guid",
+											"value": "01977455-b852-7245-a308-098ee4cb4c97"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Jun 2025 16:05:21 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "50"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": null,\n    \"message\": \"Success update customer\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/customer/:guid",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"customer",
+								":guid"
+							],
+							"variable": [
+								{
+									"key": "guid",
+									"value": "01977455-b852-7245-a308-098ee4cb4c97"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/customer/:guid",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"customer",
+										":guid"
+									],
+									"variable": [
+										{
+											"key": "guid",
+											"value": "01977455-b852-7245-a308-098ee4cb4c97"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Jun 2025 16:06:17 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "50"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": null,\n    \"message\": \"Success delete customer\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Transaction",
+			"item": [
+				{
+					"name": "Read List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/transaction?sort=asset_type&direction=DESC&page=1&limit=10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"transaction"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "900",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "asset_type",
+									"description": "contract_no, otr, admin_fee, installment_amount, interest_amount, asset_name, asset_type, created_at, updated_at"
+								},
+								{
+									"key": "direction",
+									"value": "DESC",
+									"description": "ASC, DESC"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/transaction?sort=asset_type&direction=DESC&page=1&limit=10",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"transaction"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "900",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "asset_type",
+											"description": "contract_no, otr, admin_fee, installment_amount, interest_amount, asset_name, asset_type, created_at, updated_at"
+										},
+										{
+											"key": "direction",
+											"value": "DESC",
+											"description": "ASC, DESC"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Jun 2025 18:06:17 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "929"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"guid\": \"c0c3ccc0-d595-4913-b502-295f34b13d85\",\n            \"customer_guid\": \"3fb7d7cc-de6f-477a-8a80-45674d6d29cf\",\n            \"contract_no\": \"KP-WG-20250615-0001\",\n            \"otr\": 90000,\n            \"admin_fee\": 5000,\n            \"installment_amount\": 100000,\n            \"interest_amount\": 5000,\n            \"asset_name\": \"Smart Refrigerator XYZ\",\n            \"asset_type\": \"White Goods\",\n            \"tenor_months\": 2,\n            \"created_at\": \"2025-06-15T21:12:54.093547Z\",\n            \"created_by\": \"system\",\n            \"updated_at\": null,\n            \"updated_by\": null\n        },\n        {\n            \"guid\": \"5110ec72-933d-41c3-b190-4f080296c4ed\",\n            \"customer_guid\": \"615b7708-a298-4f40-8548-f1f77b99ce05\",\n            \"contract_no\": \"KP-MOT-20250620-0002\",\n            \"otr\": 1000000,\n            \"admin_fee\": 10000,\n            \"installment_amount\": 1200000,\n            \"interest_amount\": 50000,\n            \"asset_name\": \"Motorcycle Honda Beat\",\n            \"asset_type\": \"Motor\",\n            \"tenor_months\": 2,\n            \"created_at\": \"2025-06-15T21:12:54.093547Z\",\n            \"created_by\": \"system\",\n            \"updated_at\": null,\n            \"updated_by\": null\n        }\n    ],\n    \"message\": \"Success get transaction list\",\n    \"paginate\": {\n        \"current_page\": 1,\n        \"per_page\": 10,\n        \"total_page\": 1,\n        \"total_data\": 2\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Read Detail",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/transaction/:guid",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"transaction",
+								":guid"
+							],
+							"variable": [
+								{
+									"key": "guid",
+									"value": "c0c3ccc0-d595-4913-b502-295f34b13d85"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/transaction/:guid",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"transaction",
+										":guid"
+									],
+									"variable": [
+										{
+											"key": "guid",
+											"value": "c0c3ccc0-d595-4913-b502-295f34b13d85"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Jun 2025 18:08:45 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "856"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"guid\": \"c0c3ccc0-d595-4913-b502-295f34b13d85\",\n        \"customer_guid\": \"3fb7d7cc-de6f-477a-8a80-45674d6d29cf\",\n        \"contract_no\": \"KP-WG-20250615-0001\",\n        \"otr\": 90000,\n        \"admin_fee\": 5000,\n        \"installment_amount\": 100000,\n        \"interest_amount\": 5000,\n        \"asset_name\": \"Smart Refrigerator XYZ\",\n        \"asset_type\": \"White Goods\",\n        \"tenor_months\": 2,\n        \"created_at\": \"2025-06-15T21:12:54.093547Z\",\n        \"created_by\": \"system\",\n        \"updated_at\": null,\n        \"updated_by\": null,\n        \"customer\": {\n            \"guid\": \"3fb7d7cc-de6f-477a-8a80-45674d6d29cf\",\n            \"nik\": \"3273010101900001\",\n            \"full_name\": \"Budi Santoso\",\n            \"legal_name\": \"Budi Santoso\",\n            \"birth_place\": \"Jakarta\",\n            \"birth_date\": \"1990-01-15T00:00:00Z\",\n            \"salary\": 7500000,\n            \"photo_ktp\": \"http://127.0.0.1:8000/storage/file/image/2025-03-27/1743055334_ktp_budi.jpg\",\n            \"photo_selfie\": \"http://127.0.0.1:8000/storage/file/image/2025-03-27/1743055334_selfie_budi.jpg\"\n        }\n    },\n    \"message\": \"Success get transaction detail\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customer_guid\": \"3fb7d7cc-de6f-477a-8a80-45674d6d29cf\",\r\n    \"otr\": 650000.00,\r\n    \"asset_name\": \"Honda Vario 160\",\r\n    \"asset_type\": \"Motor\",\r\n    \"tenor_months\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/transaction",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"transaction"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customer_guid\": \"3fb7d7cc-de6f-477a-8a80-45674d6d29cf\",\r\n    \"otr\": 500000.00,\r\n    \"asset_name\": \"Honda Vario 160\",\r\n    \"asset_type\": \"Motor\",\r\n    \"tenor_months\": 4\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/transaction",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Jun 2025 18:13:36 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "53"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": null,\n    \"message\": \"Success create transaction\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Storage",
+			"item": [
+				{
+					"name": "Upload",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/lenovo/Pictures/coding.jpg"
+								},
+								{
+									"key": "path",
+									"value": "image",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/storage/file",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"storage",
+								"file"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/lenovo/Pictures/coding.jpg"
+										},
+										{
+											"key": "path",
+											"value": "image",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/storage/file",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"storage",
+										"file"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Jun 2025 13:43:47 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "125"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"url\": \"http://127.0.0.1:8000/storage/file/image/2025-06-15/1749995027_coding.jpg\"\n    },\n    \"message\": \"Success upload file\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": ""
+		},
+		{
+			"key": "refresh-token",
+			"value": ""
+		}
+	]
+}
