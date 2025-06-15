@@ -33,4 +33,7 @@ const (
 var (
 	// password.
 	ErrPasswordIncorrect = errors.New("password incorrect")
+
+	// email.
+	ErrAccountNotFound = errors.New("account not found")
 )

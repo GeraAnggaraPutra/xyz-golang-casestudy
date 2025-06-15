@@ -32,6 +32,8 @@ func GenerateSessionModel(
 		AccessTokenExpiredAt:  accessToken.ExpiresAt,
 		RefreshToken:          refreshToken.Token,
 		RefreshTokenExpiredAt: refreshToken.ExpiresAt,
+		IPAddress:             request.IPAddress,
+		UserAgent:             request.UserAgent,
 	}
 
 	return

@@ -4,7 +4,6 @@ import (
 	"context"
 	"io"
 	"mime/multipart"
-	"os"
 	"time"
 
 	"kredit-plus/src/util"
@@ -17,24 +16,6 @@ type Storage struct {
 	Client     *storage.Client
 	BucketName string
 	Timeout    time.Duration
-}
-
-func NewStorage(ctx context.Context) (stg Storage, err error) {
-	stg.Timeout, err = time.ParseDuration(os.Getenv("GOOGLE_CLOUD_STORAGE_TIMEOUT"))
-	if err != nil {
-		err = errors.Wrap(err, "failed parse duration google cloud storage timeout")
-		return
-	}
-
-	stg.Client, err = storage.NewClient(ctx)
-	if err != nil {
-		err = errors.Wrap(err, "failed initialize client google cloud storage")
-		return
-	}
-
-	stg.BucketName = os.Getenv("GOOGLE_CLOUD_STORAGE_BUCKET_NAME")
-
-	return
 }
 
 // Upload an object file to storage bucket.

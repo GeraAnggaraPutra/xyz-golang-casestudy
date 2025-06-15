@@ -6,7 +6,6 @@ import (
 	"time"
 
 	"kredit-plus/src/api"
-	"kredit-plus/src/handler/storage"
 	"kredit-plus/src/kernel"
 	"kredit-plus/toolkit/cache"
 	"kredit-plus/toolkit/config"
@@ -56,14 +55,14 @@ func main() {
 	}
 
 	// setup gcs
-	gcs, err := storage.NewStorage(ctx)
+	gcs, err := config.NewStorage()
 	if err != nil {
 		log.Printf("ERROR setup GCS : %s", err.Error())
 		return
 	}
 
 	// setup module
-	k := kernel.NewKernel(cache, database, dbx, &gcs)
+	k := kernel.NewKernel(cache, database, dbx, gcs)
 
 	// run echo http
 	api.RunEchoServer(ctx, k)

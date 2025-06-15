@@ -25,6 +25,9 @@ func loginApp(svc *service.Service) echo.HandlerFunc {
 			return kernel.ResponseErrorValidate(c, err)
 		}
 
+		request.UserAgent = c.Request().UserAgent()
+		request.IPAddress = c.Request().RemoteAddr
+
 		data, user, err := svc.LoginService(c.Request().Context(), request)
 		if err != nil {
 			return kernel.ResponseError(c, err, msgFailedLogin)

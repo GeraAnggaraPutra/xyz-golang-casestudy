@@ -7,6 +7,8 @@ import (
 type SessionPayload struct {
 	SessionGUID string `json:"session_guid"`
 	UserGUID    string `json:"user_guid"`
+	UserAgent   string `json:"user_agent"`
+	IPAddress   string `json:"ip_address"`
 }
 
 func (request *SessionPayload) ToAccessTokenRequest() (

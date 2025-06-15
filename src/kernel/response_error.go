@@ -46,6 +46,8 @@ func formatError(err error) (e map[string]string) {
 	switch {
 	case errors.Is(err, constant.ErrPasswordIncorrect):
 		e = map[string]string{"password": util.CapitalFirstLetter(err.Error())}
+	case errors.Is(err, constant.ErrAccountNotFound):
+		e = map[string]string{"email": util.CapitalFirstLetter(err.Error())}
 	}
 
 	return
