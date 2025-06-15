@@ -1,0 +1,14 @@
+.DS_Store
+.git/
+.vscode/
+.idea/
+bin/
+build/
+tmp/
+*.out
+*.code-workspace
+test_coverage.html
+docs/
+vendor/
+.env
+Makefile
