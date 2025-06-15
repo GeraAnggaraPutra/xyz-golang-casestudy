@@ -38,4 +38,6 @@ var (
 	ErrAccountNotFound    = errors.New("account not found")
 	ErrEmailAlreadyExists = errors.New("email already exists")
 	ErrNIKAlreadyExists   = errors.New("NIK already exists")
+
+	ErrLimitExceeded = errors.New("limit exceeded, please contact admin")
 )

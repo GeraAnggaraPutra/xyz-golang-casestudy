@@ -50,6 +50,8 @@ func formatError(err error) (e map[string]string) {
 		e = map[string]string{"email": util.CapitalFirstLetter(err.Error())}
 	case errors.Is(err, constant.ErrNIKAlreadyExists):
 		e = map[string]string{"nik": util.CapitalFirstLetter(err.Error())}
+	case errors.Is(err, constant.ErrLimitExceeded):
+		e = map[string]string{"transaction": util.CapitalFirstLetter(err.Error())}
 	}
 
 	return

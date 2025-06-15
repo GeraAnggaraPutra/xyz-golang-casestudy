@@ -15,11 +15,12 @@ type Transaction struct {
 	InterestAmount    float64        `json:"interest_amount"`
 	AssetName         string         `json:"asset_name"`
 	AssetType         string         `json:"asset_type"`
+	TenorMonths       int            `json:"tenor_months"`
 	CreatedAt         time.Time      `json:"created_at"`
 	CreatedBy         string         `json:"created_by"`
 	UpdatedAt         sql.NullTime   `json:"updated_at"`
 	UpdatedBy         sql.NullString `json:"updated_by"`
 	DeletedAt         sql.NullTime   `json:"deleted_at"`
 	DeletedBy         sql.NullString `json:"deleted_by"`
-	Customer          Customer       `json:"-"`
+	Customer          Customer       `json:"customers" gorm:"foreignKey:CustomerGUID;references:GUID"`
 }

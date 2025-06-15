@@ -13,6 +13,7 @@ import (
 	storageDomain "kredit-plus/src/domain/storage/application"
 	userDomain "kredit-plus/src/domain/user/application"
 	customerDomain "kredit-plus/src/domain/customer/application"
+	transactionDomain "kredit-plus/src/domain/transaction/application"
 )
 
 func routes(e *echo.Echo, k *kernel.Kernel) {
@@ -33,4 +34,5 @@ func routes(e *echo.Echo, k *kernel.Kernel) {
 	storageDomain.AddRoutes(e, k)
 	userDomain.AddRoutes(e, k)
 	customerDomain.AddRoutes(e, k)
+	transactionDomain.AddRoutes(e, k)
 }

@@ -18,3 +18,9 @@ const (
 )
 
 const DefaultCacheExpireDuration = 24 * time.Hour
+
+// transaction.
+const (
+	DefaultAdminFee             = 0.005
+	DefaultInterestRatePerMonth = 0.03
+)
