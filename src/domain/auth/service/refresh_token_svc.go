@@ -33,7 +33,7 @@ func (s *Service) RefreshTokenService(
 		return
 	}
 
-	if err = s.db.Where("guid = ?", session.UserGUID).First(&user).Error; err != nil {
+	if err = s.db.Where("guid = ? AND deleted_at IS NULL", session.UserGUID).First(&user).Error; err != nil {
 		logger.WithContext(ctx).Error(err, "error find user", "guid", session.UserGUID)
 		return
 	}

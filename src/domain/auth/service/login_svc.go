@@ -35,7 +35,7 @@ func (s *Service) LoginService(
 		}
 	}()
 
-	if err = s.db.Where("email = ?", request.Email).First(&user).Error; err != nil {
+	if err = s.db.Where("email = ? AND deleted_at IS NULL", request.Email).First(&user).Error; err != nil {
 		logger.WithContext(ctx).Error(err, "error find user by email : "+request.Email)
 		return
 	}

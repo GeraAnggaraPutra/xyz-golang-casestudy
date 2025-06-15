@@ -35,5 +35,6 @@ var (
 	ErrPasswordIncorrect = errors.New("password incorrect")
 
 	// email.
-	ErrAccountNotFound = errors.New("account not found")
+	ErrAccountNotFound    = errors.New("account not found")
+	ErrEmailAlreadyExists = errors.New("email already exists")
 )
