@@ -1,6 +1,6 @@
 # Kredit Plus Case Study
 
-## Arsitektur
+## Architecture
 
 ![Kredit Plus Architecture](Kredit%20Plus%20Architechture.drawio.png)
 
