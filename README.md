@@ -8,6 +8,24 @@
 
 ![Kredit Plus ERD](Kredit%20Plus%20ERD.png)
 
+## Concurrent Transaction Handling
+
+This system implements concurrent transaction safety in the following endpoint:
+ ```sh
+ 🔗 POST {{base_url}}/transaction
+ ```
+
+When a customer submits a transaction request, the system checks their available credit limit for the selected tenor. To prevent race conditions when multiple requests hit the system at the same time, the logic uses:
+
+- Row-level locking: using FOR UPDATE via GORM's clause
+- Transaction block: using s.db.Begin() and tx.Commit()/tx.Rollback() for atomicity
+- Limit validation: if the sum of OTR + Admin Fee exceeds the customer's limit, the request is aborted
+
+📁 Code Location
+ ```sh
+ src/domain/transaction/service/create_transaction_svc.go
+ ```
+
 ## Local Development
 
 ### How to run
