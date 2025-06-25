@@ -1,0 +1,49 @@
+services:
+  postgres_db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: ${DB_SCHEMA} # Mengambil nilai DB_SCHEMA dari .env Anda
+      POSTGRES_USER: ${DB_USERNAME} # Mengambil nilai DB_USERNAME dari .env Anda
+      POSTGRES_PASSWORD: ${DB_PASSWORD} # Mengambil nilai DB_PASSWORD dari .env Anda
+    volumes:
+      - postgres_data:/var/lib/postgresql/data 
+    ports:
+      - "5432:5432" 
+    networks:
+      - kredit_plus_network
+
+  redis_cache:
+    image: redis:8
+    volumes:
+      - redis_data:/data 
+    ports:
+      - "6379:6379"
+    networks:
+      - kredit_plus_network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      DB_HOST: postgres_db
+      CACHE_HOST: redis_cache
+      BACKEND_URL: http://app:8000
+      MIGRATE_DATABASE_URL: postgresql://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_SCHEMA}?sslmode=${DB_SSLMODE}
+    depends_on:
+      - postgres_db
+      - redis_cache
+    networks:
+      - kredit_plus_network
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  kredit_plus_network:
+    name: kredit_plus_network
